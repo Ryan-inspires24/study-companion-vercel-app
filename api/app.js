@@ -5,6 +5,10 @@ import authRoute from './routes/index.js';
 const app = express();
 
 app.use(express.json());
+app.get('/', (req, res) => {
+  res.send('Hello from Express + serverless on Vercel!');
+});
+
 app.use(authRoute); 
 
 export default serverless(app);
