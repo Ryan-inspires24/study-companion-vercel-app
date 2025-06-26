@@ -3,7 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "api/app.js",
   "scripts": {
+    "start": "node server/app.js",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -13,6 +15,7 @@
     "bcrypt": "^6.0.0",
     "express": "^5.1.0",
     "firebase": "^11.9.1",
+    "firebase-admin": "^11.5.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.2",
