@@ -1,14 +1,10 @@
-import express from 'express';
-import serverless from 'serverless-http';
-// import authRoute from './routes/index.js';
+import express from "express";
+import serverless from "serverless-http";
 
 const app = express();
 
-app.use(express.json());
-app.get('/health', (req, res) => {
-  res.send('Hello from Express + serverless on Vercel!');
+app.get("/health", (req, res) => {
+  res.json({ status: "ok" });
 });
-
-// app.use(authRoute); 
 
 export default serverless(app);
