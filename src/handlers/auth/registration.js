@@ -21,9 +21,7 @@ export async function register(req, res) {
             username,
             email,
             phoneNumber,
-            password: hashedPassword,
-            status: 'active',
-            createdAt: new Date()
+            password: hashedPassword
         };
 
 
