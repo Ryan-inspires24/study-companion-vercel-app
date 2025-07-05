@@ -6,8 +6,16 @@ import cors from 'cors';
 const app = express();
 const port = 3000;
 
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
-app.use(express.json());
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://gce-study-companion.vercel.app'
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
 app.use('/api', authRoutes);
 
 if (process.env.RENDER === 'true' || process.env.VERCEL !== '1') {
