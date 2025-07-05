@@ -47,6 +47,6 @@ export async function register(req, res) {
         console.log('User registered:', newUser);
     } catch (error) {
         console.error('Error registering user:', error.message);
-        res.status(500).json({ error: 'Failed to create user' });
+        res.status(500).json({ error: error.message})
     }
 }
