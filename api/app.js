@@ -1,14 +1,19 @@
 import express from 'express';
-import serverless from 'serverless-http';
-import authRoute from './routes/index.js';
+import authRoutes from './routes/index.js';
+import cors from 'cors';
+
 
 const app = express();
+const port = 3000;
 
+app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 app.use(express.json());
-app.get('/health', (req, res) => {
-  res.send('Hello from Express + serverless on Vercel!');
-});
+app.use('/api', authRoutes);
 
-app.use(authRoute); 
+if (process.env.RENDER === 'true' || process.env.VERCEL !== '1') {
+    app.listen(port, () => {
+        console.log(`Server running on port ${port}`);
+    });
+}
 
-export default serverless(app);
+export default app;
