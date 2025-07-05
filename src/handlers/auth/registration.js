@@ -4,7 +4,15 @@ import { collection, where, addDoc, query, getDocs } from 'firebase/firestore';
 
 export async function register(req, res) {
     try {
-        const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+        let body = req.body;
+
+        if (!body || typeof body !== 'object') {
+            try {
+                body = JSON.parse(req.body || '{}');
+            } catch (e) {
+                return res.status(400).json({ error: 'Invalid JSON in request body' });
+            }
+        }
 
         const { username, email, password, phoneNumber } = body;
         if (!username || !email || !password || !phoneNumber) {
@@ -47,6 +55,6 @@ export async function register(req, res) {
         console.log('User registered:', newUser);
     } catch (error) {
         console.error('Error registering user:', error.message);
-        res.status(500).json({ error: error.message})
+        res.status(500).json({ error: error.message })
     }
 }
