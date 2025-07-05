@@ -3,7 +3,6 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import bcrypt from 'bcrypt';
 
 
-// Route to handle user login
  export async function login (req, res) {
   try {
     const { username, password } = req.body;
@@ -41,4 +40,3 @@ userData, uid: userDocId });
     return res.status(500).json({ error: 'Server error' });
   }
 };
-
